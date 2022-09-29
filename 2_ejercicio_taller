@@ -1,0 +1,93 @@
+
+package pkg2_ejercicio_taller;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+
+public class Main {
+
+ 
+    public static void main(String[] args) {
+        Scanner leer = new Scanner(System.in);
+        String nombre, libroMenor="";
+        int numPaginas, numRegistros,menorHojas = 10000000;
+        double valorHoja, promedio,suma = 0, valorLibro;
+        
+        List<Libro> list_libros = new ArrayList<>();
+        
+        System.out.println("Ingrese el número de registros que va a hacer");
+        numRegistros = leer.nextInt();
+        
+        for (int i = 0; i < numRegistros; i++){
+            Libro libro = new Libro();
+            
+            System.out.println("Ingrese el nombre del libro");
+            nombre = leer.next();
+            
+            System.out.println("Ingrese el número de páginas");
+            numPaginas = leer.nextInt();
+            
+            System.out.println("Ingrese ingrese el valor por hoja");
+            valorHoja = leer.nextDouble();
+            
+            System.out.println("");
+            
+            libro.setNombre(nombre);
+            libro.setNumPaginas(numPaginas);
+            libro.setValorHoja(valorHoja);
+            
+            list_libros.add(libro);
+            
+        }
+        for (int k = 0; k < list_libros.size();k++){
+            valorLibro = list_libros.get(k).getNumPaginas() * list_libros.get(k).getValorHoja();
+            suma += valorLibro;
+            
+            if (list_libros.get(k).getNumPaginas() < menorHojas){
+                libroMenor = list_libros.get(k).getNombre();
+                menorHojas = list_libros.get(k).getNumPaginas();
+            }
+        }
+        promedio = suma / list_libros.size();
+        System.out.println("El valor promedio de los libro es: "+ promedio);
+        System.out.println("El libro con menos hojas es: "+ libroMenor + " y tiene " + menorHojas + " hojas");   
+    }
+    
+}
+---------------------------------------------------------------------------------------------
+
+package pkg2_ejercicio_taller;
+
+public class Libro {
+    private String nombre;
+    private int numPaginas;
+    private double valorHoja;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getNumPaginas() {
+        return numPaginas;
+    }
+
+    public void setNumPaginas(int numPaginas) {
+        this.numPaginas = numPaginas;
+    }
+
+    public double getValorHoja() {
+        return valorHoja;
+    }
+
+    public void setValorHoja(double valorHoja) {
+        this.valorHoja = valorHoja;
+    }
+    
+    
+}
