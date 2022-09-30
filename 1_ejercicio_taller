@@ -1,0 +1,114 @@
+
+package pkg1_ejercicio_taller;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+
+public class Main {
+
+  
+    public static void main(String[] args) {
+        Scanner leer = new Scanner(System.in);
+        // Declarar variables
+        String nombre;
+        String cedula;
+        int edad, descartados = 0, respuesta=0;
+        double peso;
+        
+        //Creación de la lista
+        List<Persona> list_personas = new ArrayList<>();
+        
+        System.out.print("Deseas ingresar una persona (1 para si / 2 para 2): ");
+        respuesta = leer.nextInt();
+        
+        // ciclo para ingresar datos
+        while (respuesta == 1){
+            Persona person = new Persona();
+            
+            System.out.print("Ingrese el nombre: ");
+            nombre = leer.next();
+            
+            System.out.print("Ingrese la cedula: ");
+            cedula = leer.next();
+            
+            System.out.print("Ingrese la edad : ");
+            edad = leer.nextInt();
+            
+            System.out.print("Ingrese el peso: ");
+            peso= leer.nextDouble();
+            
+            person.setNombre(nombre);
+            person.setCedula(cedula);
+            person.setEdad(edad);
+            person.setPeso(peso);
+            
+            list_personas.add(person);
+            System.out.println(" ");
+            System.out.println("¿Deseas ingresar otro persona?: ");
+            respuesta = leer.nextInt();
+        }
+        
+        for (int i = 0; i < list_personas.size(); i++){
+            if (list_personas.get(i).getEdad() < 18 && list_personas.get(i).getPeso() > 68){
+                System.out.println("Nombre: " + list_personas.get(i).getNombre());
+                System.out.println("Cédula: " +list_personas.get(i).getCedula());
+                System.out.println("Edad: " +list_personas.get(i).getEdad());
+                System.out.println("Peso: " +list_personas.get(i).getPeso());
+                System.out.println("");
+            }
+            else{
+                descartados++;
+            }
+        }
+        System.out.println("");
+        System.out.println("Los descartados son " + descartados);
+    }
+    
+}
+-----------------------------------------------------------------------------------------------------------------
+
+
+package pkg1_ejercicio_taller;
+
+
+public class Persona {
+    private String nombre;
+    private String cedula;
+    private int edad;
+    private double peso;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+    
+}
