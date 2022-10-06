@@ -1,0 +1,173 @@
+
+package punto_1_taller;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+
+public class Punto_1_Taller {
+
+    
+    public static void main(String[] args) {
+        // Declaración de variables
+        Scanner leer = new Scanner(System.in);
+        String nombre;
+        String cedula;
+        String sexo;
+        String hombreJoven = null;
+        String respuesta;
+        int edad; 
+        int contador=0;
+        int contadorH=0;
+        int contadorM=0;
+        int suma = 0;
+        int menor = 100;
+        double estatura, promedio;
+        //Creacion de la lista
+        List<Persona> list_person = new ArrayList<>();
+        
+        System.out.println("Deseas ingresar una persona (s/n)");
+        respuesta = leer.next();
+        
+        while ("s".equals(respuesta)){
+            
+            System.out.println("Ingresa el nombre");
+            nombre = leer.next();
+            
+            System.out.println("Ingresa la cédula");
+            cedula = leer.next();
+            
+            System.out.println("Ingresa el sexo (M/F)");
+            sexo = leer.next();
+            
+            System.out.println("Ingresa la edad");
+            edad = leer.nextInt();
+            
+            System.out.println("Ingresa el estatura");
+            estatura = leer.nextDouble();
+            if (estatura >= 1.50){
+            
+            //Se crea un nuevo objeto del tipo persona
+            Persona person = new Persona();
+            
+            //Se inyectan las variables al objeto
+            person.setNombre(nombre);
+            
+            person.setCedula(cedula);
+            
+            person.setSexo(sexo);
+            
+            person.setEdad(edad);
+            
+            person.setEstatura(estatura);
+            
+            // Se agrega a la lista el nuevo objeto
+            list_person.add(person);
+            } else{
+                contador++;
+            }
+            System.out.println("");
+            System.out.println("¿Deseas ingresar otra persona (s/n)?");
+            respuesta = leer.next();
+        }
+        
+        for (int i = 0; i < list_person.size(); i++){
+            
+            if ("F".equals(list_person.get(i).getSexo()) && list_person.get(i).getEstatura() < 1.90){
+                suma += list_person.get(i).getEdad();
+                
+            } else if ("M".equals(list_person.get(i).getSexo()) && list_person.get(i).getEdad() < menor){
+                menor = list_person.get(i).getEdad();
+                
+                hombreJoven = list_person.get(i).getNombre();
+                
+            }
+            if ("F".equals(list_person.get(i).getSexo())){
+                contadorM++;
+                
+            }else if ("M".equals(list_person.get(i).getSexo())){
+                contadorH++;
+                
+           }
+            System.out.println("");
+            
+            //Se imprime la lista
+            System.out.println("Nombre: " + list_person.get(i).getNombre());
+            
+            System.out.println("Cédula: " +list_person.get(i).getCedula());
+            
+            System.out.println("Sexo: " +list_person.get(i).getSexo());
+            
+            System.out.println("Edad: " +list_person.get(i).getEdad());
+            
+            System.out.println("Peso: " +list_person.get(i).getEstatura());
+            
+            System.out.print("");
+        }
+        promedio = suma / contadorM;
+        System.out.println("");
+        System.out.println("Los descartados son: "+ contador);
+        System.out.println("El promedio de las mujeres con una estatura inferior a 1.90 es: "+ promedio);
+        System.out.println("El hombre mas joven es: "+ hombreJoven);
+        System.out.println("La cantidad de hombres fue: "+ contadorH);
+        System.out.println("La cantidad de mujeres fue: "+ contadorM);
+        System.out.println("");
+    }
+    
+}
+
+---------------------------------------------------------------------------------------------------------
+
+package punto_1_taller;
+
+
+public class Persona {
+    String nombre;
+    String cedula;
+    String sexo;
+    int edad;
+    double estatura;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public double getEstatura() {
+        return estatura;
+    }
+
+    public void setEstatura(double estatura) {
+        this.estatura = estatura;
+    }
+    
+    
+}
