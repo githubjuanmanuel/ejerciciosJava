@@ -1,0 +1,98 @@
+
+package practicas_pilas;
+
+import java.util.Scanner;
+import java.util.Stack;
+
+
+public class Practicas_Pilas {
+
+  
+    public static void main(String[] args) {
+        Stack<Persona> pila = new Stack<Persona>();
+        Stack<Persona> aux = new Stack<Persona>();
+        int contador = 0;
+        Scanner leer = new Scanner(System.in);
+        
+        String respuesta, nombre, cedula;
+        int edad;
+        
+        System.out.println("¿Deseas ingresar una persona (s/n)?");
+        respuesta = leer.next();
+        
+        while ("S".equals(respuesta) || "s".equals(respuesta)){
+            System.out.print("Ingresa el nombre: ");
+            nombre = leer.next();
+            
+            System.out.print("Ingresa la cédula: ");
+            cedula = leer.next();
+            
+            System.out.print("Ingresa la edad: ");
+            edad = leer.nextInt();
+            
+            Persona person = new Persona(nombre, cedula, edad);
+            
+            pila.add(person);
+            aux.add(person);
+            contador++;
+            
+            System.out.println("");
+            System.out.println("Deseas ingresar otra persona(s/n)");
+            respuesta = leer.next();
+        }
+        contador--;
+        while (pila.empty()!= true)
+        {
+            System.out.println("Nombre: "+ pila.get(contador).getNombre());
+            System.out.println("Cedula: "+ pila.get(contador).getCedula());
+            System.out.println("Edad: "+ pila.get(contador).getEdad());
+            pila.pop();
+            System.out.println("");
+            contador--;
+        }  
+    }
+}
+
+
+-----------------------------------------------------------------------------------------------------------
+
+package practicas_pilas;
+
+
+public class Persona {
+    private String nombre;
+    private String cedula;
+    private int edad;
+
+    public Persona(String nombre, String cedula, int edad) {
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.edad = edad;
+    }
+
+    
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+}
